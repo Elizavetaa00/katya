@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Данные - Карта офиса | Формула здоровья</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш_api_ключ&lang=ru_RU" type="text/javascript"></script>
+    <style>
+        body {
+            background: #f5f0ed;
+            font-family: 'Frank Ruhl Libre', 'Inter', sans-serif;
+            color: #46211A;
+        }
+        .map-container {
+            max-width: 1200px;
+            margin: 120px auto 60px;
+            padding: 0 20px;
+        }
+        .map-card {
+            background: white;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .map-header {
+            padding: 30px;
+            text-align: center;
+            border-bottom: 1px solid #e8ddd7;
+        }
+        .map-header h1 {
+            font-size: 32px;
+            color: #46211A;
+            margin-bottom: 10px;
+        }
+        .map-header p {
+            color: #693D3D;
+            font-size: 16px;
+        }
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+        .address-info {
+            padding: 30px;
+            text-align: center;
+            background: #faf8f7;
+        }
+        .address-info h3 {
+            color: #64b61a;
+            margin-bottom: 15px;
+        }
+        .address-info p {
+            color: #46211A;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .address-info i {
+            color: #64b61a;
+            margin-right: 10px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #64b61a;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .back-link:hover {
+            color: #4d8e14;
+        }
+        @media (max-width: 768px) {
+            .map-container {
+                margin: 100px 15px 40px;
+            }
+            .map-header h1 {
+                font-size: 24px;
+            }
+            #map {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========== ШАПКА ========== -->
+<div class="header-top-white">
+    <div class="container">
+        <div class="header-top-row">
+            <div class="logo-col">
+                <a href="index.html" class="logo-link">
+                    <img src="logo.png" alt="Формула здоровья" class="logo-img">
+                    <span class="logo-text-gradient">Формула здоровья</span>
+                </a>
+            </div>
+            <div class="auth-col">
+                <a href="login.html" class="auth-link-white">Регистрация</a> | <a href="login.html" class="auth-link-white">Вход в кабинет</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header-bottom-green">
+    <div class="container">
+        <div class="header-bottom-row">
+            <nav class="nav-menu">
+                <!-- Продукты -->
+                <div class="dropdown-wrapper">
+                    <a href="#" class="nav-link-green dropdown-toggle">
+                        Продукты <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </a>
+                    <div class="dropdown-mega-menu">
+                        <div class="mega-menu-container">
+                            <div class="mega-menu-section">
+                                <h4>Категории</h4>
+                                <ul>
+                                    <li><a href="new-items.html"><i class="fas fa-star"></i> Новинки</a></li>
+                                    <li><a href="health.html"><i class="fas fa-heartbeat"></i> Здоровье</a></li>
+                                    <li><a href="beauty.html"><i class="fas fa-spa"></i> Красота</a></li>
+                                    <li><a href="devices.html"><i class="fas fa-microchip"></i> Приборы/Аксессуары</a></li>
+                                    <li><a href="all-products.html" class="all-link"><i class="fas fa-th-large"></i> Смотреть всё</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- О нас -->
+                <div class="dropdown-wrapper-about">
+                    <a href="#" class="nav-link-green dropdown-toggle-about">
+                        О нас <i class="fas fa-chevron-down dropdown-arrow-about"></i>
+                    </a>
+                    <div class="dropdown-menu-about">
+                        <div class="mega-menu-container-about">
+                            <div class="mega-menu-section-about">
+                                <h4>О компании</h4>
+                                <ul>
+                                    <li><a href="history.html"><i class="fas fa-book-open"></i> История</a></li>
+                                    <li><a href="channels.html"><i class="fas fa-users"></i> Наши каналы</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Информация -->
+                <div class="dropdown-wrapper-info">
+                    <a href="#" class="nav-link-green dropdown-toggle-info">
+                        Информация <i class="fas fa-chevron-down dropdown-arrow-info"></i>
+                    </a>
+                    <div class="dropdown-menu-info">
+                        <div class="mega-menu-container-info">
+                            <div class="mega-menu-section-info">
+                                <h4>Полезное</h4>
+                                <ul>
+                                    <li><a href="articles.html"><i class="fas fa-file-alt"></i> Статьи</a></li>
+                                    <li><a href="reviews.html"><i class="fas fa-star"></i> Отзывы</a></li>
+                                    <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Контакты</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ -->
+                <a href="faq.html" class="nav-link-green">FAQ</a>
+            </nav>
+            <div class="social-icons">
+                <a href="#" class="social-icon-green" title="Telegram"><i class="fab fa-telegram"></i></a>
+                <a href="#" class="social-icon-green" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="social-icon-green" title="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header-spacer"></div>
+
+<div class="map-container">
+    <div class="map-card">
+        <div class="map-header">
+            <h1>Наше местоположение</h1>
+            <p>Представительство компании "Формула здоровья" в Нефтеюганске</p>
+        </div>
+        <div id="map"></div>
+        <div class="address-info">
+            <h3><i class="fas fa-map-marker-alt"></i> Адрес</h3>
+            <p>г. Нефтеюганск, 2-й микрорайон, дом 18</p>
+            <p><i class="fas fa-phone"></i> +7 (932) 404-15-09</p>
+            <p><i class="fas fa-envelope"></i> formula-health@mail.ru</p>
+            <p><i class="fas fa-clock"></i> Пн-Пт: 9:00 - 18:00, Сб: 10:00 - 16:00</p>
+            <a href="index.html" class="back-link">← Вернуться на главную</a>
+        </div>
+    </div>
+</div>
+
+<!-- ПОДВАЛ -->
+<footer class="footer-new">
+    <div class="footer-bg"></div>
+    <div class="container">
+        <div class="footer-content">
+            <!-- Левая колонка: логотип и название -->
+            <div class="footer-brand">
+                <div class="footer-logo-wrapper">
+                    <img src="logo.png" alt="Формула здоровья" class="footer-logo-img-new">
+                    <span class="footer-brand-name">Формула здоровья</span>
+                </div>
+           <!-- Иконки соцсетей под логотипом и названием -->
+                <div class="footer-social">
+                    <a href="#" class="footer-social-icon" title="Telegram"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="footer-social-icon" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="footer-social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="footer-social-icon" title="Rutube"><i class="fas fa-play-circle"></i></a>
+                </div>
+            </div>
+
+            <!-- Колонка: Продукты -->
+            <div class="footer-column">
+                <h4 class="footer-title">Продукты</h4>
+                <ul class="footer-menu">
+                    <li><a href="health.html">Здоровье</a></li>
+                    <li><a href="beauty.html">Красота</a></li>
+                    <li><a href="devices.html">Приборы/Аксессуары</a></li>
+                    <li><a href="all-products.html">Смотреть всё</a></li>
+                </ul>
+            </div>
+
+            <!-- Колонка: О нас -->
+            <div class="footer-column">
+                <h4 class="footer-title">О нас</h4>
+                <ul class="footer-menu">
+                    <li><a href="history.html">Компания</a></li>
+                    <li><a href="channels.html">Наши соцсети</a></li>
+                </ul>
+            </div>
+           
+            <!-- Колонка: Информация -->
+            <div class="footer-column">
+                <h4 class="footer-title">Информация</h4>
+                <ul class="footer-menu">
+                    <li><a href="articles.html">Статьи</a></li>
+                    <li><a href="reviews.html">Отзывы</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </div>
+
+
+            <!-- Колонка: FAQ -->
+            <div class="footer-column">
+                <h4 class="footer-title">FAQ</h4>
+                <ul class="footer-menu">
+                    <li><a href="faq.html">Часто задаваемые вопросы</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Нижняя строка с копирайтом и дополнительными ссылками -->
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                <p>© 2026  | Все права защищены</p>
+            </div>
+            <div class="footer-bottom-links">
+                <a href="login.html">Личный кабинет</a>
+                <a href="privacy.html">Политика конфиденциальности</a>
+                <a href="map.html">Данные </a>
+            </div>
+          </div>
+        </div>
+   </footer>
+
+
+<script>
+    ymaps.ready(init);
+    function init() {
+        // Координаты из ссылки: 61.087925, 72.612560
+        var officeCoordinates = [61.087925, 72.612560];
+        
+        var myMap = new ymaps.Map("map", {
+            center: officeCoordinates,
+            zoom: 17,
+            controls: ['zoomControl', 'fullscreenControl']
+        });
+        
+        var myPlacemark = new ymaps.Placemark(officeCoordinates, {
+            hintContent: 'Формула здоровья',
+            balloonContent: '<strong>Формула здоровья</strong><br>г. Нефтеюганск, 2-й микрорайон, дом 18<br>+7 (800) 123-45-67'
+        }, {
+            preset: 'islands#greenDotIcon',
+            iconColor: '#64b61a'
+        });
+        
+        myMap.geoObjects.add(myPlacemark);
+    }
+</script>
+
+</body>
+</html>

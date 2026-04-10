@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EFFECTOR - Формула здоровья</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .product-detail {
+            padding: 120px 0 60px;
+            background: #fff;
+        }
+        .product-main {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        .product-gallery {
+            background: #f9f6f3;
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+        }
+        .product-gallery img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+        }
+        .product-info-detail h1 {
+            font-size: 42px;
+            font-weight: 800;
+            color: #46211A;
+            margin-bottom: 10px;
+        }
+        .product-subtitle {
+            font-size: 18px;
+            color: #64b61a;
+            margin-bottom: 15px;
+        }
+        .product-desc-short {
+            font-size: 16px;
+            color: #693D3D;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .product-specs {
+            margin-bottom: 25px;
+        }
+        .spec-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+        .spec-label {
+            width: 120px;
+            font-weight: 600;
+            color: #46211A;
+        }
+        .spec-value {
+            color: #693D3D;
+        }
+        .product-price-detail {
+            font-size: 36px;
+            font-weight: 800;
+            color: #64b61a;
+            margin-bottom: 25px;
+        }
+        .btn-buy-detail {
+            background: #64b61a;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+            max-width: 250px;
+        }
+        .btn-buy-detail:hover {
+            background: #4d8e14;
+            transform: translateY(-2px);
+        }
+        .product-tabs {
+            margin-top: 50px;
+        }
+        .tabs-header {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            border-bottom: 2px solid #e8ddd7;
+            margin-bottom: 30px;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #693D3D;
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+            font-family: inherit;
+        }
+        .tab-btn:hover {
+            color: #64b61a;
+        }
+        .tab-btn.active {
+            color: #64b61a;
+        }
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #64b61a;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px 0;
+            line-height: 1.6;
+            color: #46211A;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        .tab-content h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #46211A;
+        }
+        .tab-content h4 {
+            font-size: 18px;
+            margin: 20px 0 10px;
+            color: #64b61a;
+        }
+        .tab-content p {
+            margin-bottom: 15px;
+        }
+        .tab-content ul {
+            margin: 15px 0 15px 25px;
+        }
+        .tab-content li {
+            margin-bottom: 8px;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #64b61a;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        .back-link:hover {
+            transform: translateX(-3px);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 768px) {
+            .product-main {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .product-info-detail h1 {
+                font-size: 32px;
+            }
+            .tabs-header {
+                gap: 0;
+            }
+            .tab-btn {
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========== ШАПКА ========== -->
+<div class="header-top-white">
+    <div class="container">
+        <div class="header-top-row">
+            <div class="logo-col">
+                <a href="index.html" class="logo-link">
+                    <img src="logo.png" alt="Формула здоровья" class="logo-img">
+                    <span class="logo-text-gradient">Формула здоровья</span>
+                </a>
+            </div>
+            <div class="auth-col">
+                <a href="login.html" class="auth-link-white">Регистрация</a> | <a href="login.html" class="auth-link-white">Вход в кабинет</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header-bottom-green">
+    <div class="container">
+        <div class="header-bottom-row">
+            <nav class="nav-menu">
+                <!-- Продукты -->
+                <div class="dropdown-wrapper">
+                    <a href="#" class="nav-link-green dropdown-toggle">
+                        Продукты <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </a>
+                    <div class="dropdown-mega-menu">
+                        <div class="mega-menu-container">
+                            <div class="mega-menu-section">
+                                <h4>Категории</h4>
+                                <ul>
+                                    <li><a href="new-items.html"><i class="fas fa-star"></i> Новинки</a></li>
+                                    <li><a href="health.html"><i class="fas fa-heartbeat"></i> Здоровье</a></li>
+                                    <li><a href="beauty.html"><i class="fas fa-spa"></i> Красота</a></li>
+                                    <li><a href="devices.html"><i class="fas fa-microchip"></i> Приборы/Аксессуары</a></li>
+                                    <li><a href="all-products.html" class="all-link"><i class="fas fa-th-large"></i> Смотреть всё</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- О нас -->
+                <div class="dropdown-wrapper-about">
+                    <a href="#" class="nav-link-green dropdown-toggle-about">
+                        О нас <i class="fas fa-chevron-down dropdown-arrow-about"></i>
+                    </a>
+                    <div class="dropdown-menu-about">
+                        <div class="mega-menu-container-about">
+                            <div class="mega-menu-section-about">
+                                <h4>О компании</h4>
+                                <ul>
+                                    <li><a href="history.html"><i class="fas fa-book-open"></i> История</a></li>
+                                    <li><a href="channels.html"><i class="fas fa-users"></i> Наши каналы</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Информация -->
+                <div class="dropdown-wrapper-info">
+                    <a href="#" class="nav-link-green dropdown-toggle-info">
+                        Информация <i class="fas fa-chevron-down dropdown-arrow-info"></i>
+                    </a>
+                    <div class="dropdown-menu-info">
+                        <div class="mega-menu-container-info">
+                            <div class="mega-menu-section-info">
+                                <h4>Полезное</h4>
+                                <ul>
+                                    <li><a href="articles.html"><i class="fas fa-file-alt"></i> Статьи</a></li>
+                                    <li><a href="reviews.html"><i class="fas fa-star"></i> Отзывы</a></li>
+                                    <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Контакты</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ -->
+                <a href="faq.html" class="nav-link-green">FAQ</a>
+            </nav>
+            <div class="social-icons">
+                <a href="#" class="social-icon-green" title="Telegram"><i class="fab fa-telegram"></i></a>
+                <a href="#" class="social-icon-green" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="social-icon-green" title="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header-spacer"></div>
+
+<main class="product-detail">
+    <div class="container">
+        <a href="#" id="backLink" class="back-link"><i class="fas fa-arrow-left"></i> Назад в раздел</a>
+        
+        <div class="product-main">
+            <div class="product-gallery">
+                <img id="productImage" src="images/effector.png" alt="EFFECTOR">
+            </div>
+            <div class="product-info-detail">
+                <h1 id="productName">EFFECTOR</h1>
+                <div class="product-subtitle" id="productSubtitle">многофункциональный биомодулятор</div>
+                <div class="product-desc-short" id="productShortDesc">
+                    Многофункциональный биомодулятор EFFECTOR – инновационный российский продукт для биологического и энергетического омоложения клеток.
+                </div>
+                <div class="product-specs">
+                    <div class="spec-item">
+                        <span class="spec-label">Объем:</span>
+                        <span class="spec-value" id="productVolume">30 стиков по 1 гр.</span>
+                    </div>
+                </div>
+                <div class="product-price-detail" id="productPrice">3 910 ₽</div>
+                <button class="btn-buy-detail" id="buyBtn">Купить</button>
+            </div>
+        </div>
+        
+        <div class="product-tabs">
+            <div class="tabs-header">
+                <button class="tab-btn active" data-tab="description">Описание</button>
+                <button class="tab-btn" data-tab="composition">Состав</button>
+                <button class="tab-btn" data-tab="properties">Результат использования</button>
+                <button class="tab-btn" data-tab="recommendations">Рекомендации по применению</button>
+            </div>
+            
+            <div id="description" class="tab-content active">
+                <div id="descriptionContent"></div>
+            </div>
+            <div id="composition" class="tab-content">
+                <div id="compositionContent"></div>
+            </div>
+            <div id="properties" class="tab-content">
+                <div id="propertiesContent"></div>
+            </div>
+            <div id="recommendations" class="tab-content">
+                <div id="recommendationsContent"></div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- ПОДВАЛ -->
+<footer class="footer-new">
+    <div class="footer-bg"></div>
+    <div class="container">
+        <div class="footer-content">
+            <!-- Левая колонка: логотип и название -->
+            <div class="footer-brand">
+                <div class="footer-logo-wrapper">
+                    <img src="logo.png" alt="Формула здоровья" class="footer-logo-img-new">
+                    <span class="footer-brand-name">Формула здоровья</span>
+                </div>
+           <!-- Иконки соцсетей под логотипом и названием -->
+                <div class="footer-social">
+                    <a href="#" class="footer-social-icon" title="Telegram"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="footer-social-icon" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="footer-social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="footer-social-icon" title="Rutube"><i class="fas fa-play-circle"></i></a>
+                </div>
+            </div>
+
+            <!-- Колонка: Продукты -->
+            <div class="footer-column">
+                <h4 class="footer-title">Продукты</h4>
+                <ul class="footer-menu">
+                    <li><a href="health.html">Здоровье</a></li>
+                    <li><a href="beauty.html">Красота</a></li>
+                    <li><a href="devices.html">Приборы/Аксессуары</a></li>
+                    <li><a href="all-products.html">Смотреть всё</a></li>
+                </ul>
+            </div>
+
+            <!-- Колонка: О нас -->
+            <div class="footer-column">
+                <h4 class="footer-title">О нас</h4>
+                <ul class="footer-menu">
+                    <li><a href="history.html">Компания</a></li>
+                    <li><a href="channels.html">Наши соцсети</a></li>
+                </ul>
+            </div>
+           
+            <!-- Колонка: Информация -->
+            <div class="footer-column">
+                <h4 class="footer-title">Информация</h4>
+                <ul class="footer-menu">
+                    <li><a href="articles.html">Статьи</a></li>
+                    <li><a href="reviews.html">Отзывы</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </div>
+
+
+            <!-- Колонка: FAQ -->
+            <div class="footer-column">
+                <h4 class="footer-title">FAQ</h4>
+                <ul class="footer-menu">
+                    <li><a href="faq.html">Часто задаваемые вопросы</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Нижняя строка с копирайтом и дополнительными ссылками -->
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                <p>© 2026  | Все права защищены</p>
+            </div>
+            <div class="footer-bottom-links">
+                <a href="login.html">Личный кабинет</a>
+                <a href="privacy.html">Политика конфиденциальности</a>
+                <a href="map.html">Данные </a>
+            </div>
+          </div>
+        </div>
+   </footer>
+
+<script>
+    // ===== БАЗА ДАННЫХ ВСЕХ ТОВАРОВ =====
+    const productsData = {
+        // ===== ЗДОРОВЬЕ =====
+        "effector": {
+            name: "EFFECTOR", subtitle: "многофункциональный биомодулятор", volume: "30 стиков по 1 гр.", price: "3 910 ₽", image: "images/effector.png", category: "health",
+            shortDesc: "Многофункциональный биомодулятор EFFECTOR – инновационный российский продукт для биологического и энергетического омоложения клеток.",
+            description: `<p>Многофункциональный биомодулятор EFFECTOR – инновационный российский продукт для биологического и энергетического омоложения клеток.</p><p>Применение EFFECTOR стимулирует естественные процессы оздоровления на молекулярном уровне: продукт ускоряет внутриклеточное очищение, улучшает работу митохондрий, защищает ДНК от повреждений, снижает оксидативный стресс и формирует особую иммунную защиту на клеточном уровне.</p>`,
+            composition: `<p><strong>Состав:</strong> Состав:  RNA VERUMТМ (экстракт из пекарских дрожжей, содержание RNA Verum в 1 сашете 12,5 мг = 30 mg nano capsule), спермидин (чистота 99%), сок киви.</p>`,
+            properties: `<ul><li>улучшение работы иммунной системы</li><li>регенерацию клеток и тканей</li><li>мощные anti-age эффекты</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong> содержимое одного стика высыпать под язык, при необходимости запить водой.</p><p><strong>Противопоказания:</strong> индивидуальная непереносимость компонентов.</p>`
+        },
+        "defender": {
+            name: "DEFENDER", subtitle: "anti-stress complex", volume: "30 капсул", price: "1 790 ₽", image: "images/defender.png", category: "health",
+            shortDesc: "Anti-stress комплекс для нервной системы и здорового сна",
+            description: `<p>DEFENDER – инновационный антистрессовый комплекс для поддержки нервной системы, улучшения сна и повышения стрессоустойчивости.</p>`,
+            composition: `<p><strong>Состав:</strong> экстракт пустырника, экстракт валерианы, магний, витамин B6, мелатонин.</p>`,
+            properties: `<ul><li>Снижает уровень тревожности</li><li>Улучшает качество сна</li><li>Повышает стрессоустойчивость</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong> по 1 капсуле 2 раза в день во время еды. Курс: 30 дней.</p>`
+        },
+        "chlorophyll": {
+            name: "VERUM Chlorophyll Ferrum", subtitle: "Biogenic element", volume: "60 п. по 1,25 г.", price: "2 750 ₽", image: "images/chlorophyll.png", category: "health",
+            shortDesc: "Хлорофилл с железом для энергии и кроветворения",
+            description: `<p>VERUM Chlorophyll Ferrum – уникальная формула жидкого хлорофилла с органическим железом для поддержания энергетического баланса и здоровья крови.</p>`,
+            composition: `<p><strong>Состав:</strong> хлорофилл жидкий (из люцерны), железо бисглицинат, витамин C.</p>`,
+            properties: `<ul><li>Повышает уровень гемоглобина</li><li>Улучшает кислородный обмен</li><li>Дарит энергию и бодрость</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong> содержимое 1 стика растворить в стакане воды, принимать 1 раз в день.</p>`
+        },
+        "synbiotic": {
+            name: "SYNBIOTIC 5", subtitle: "синбиотик 5-го поколения", volume: "30 капсул массой 700 мг.", price: "1 900 ₽", image: "images/synbiotic.png", category: "health",
+            shortDesc: "Синбиотик 5-го поколения для здоровья кишечника и иммунитета",
+            description: `<p>SYNBIOTIC 5 – инновационный синбиотик, сочетающий пробиотики и пребиотики для комплексной поддержки микробиоты кишечника.</p>`,
+            composition: `<p><strong>Состав:</strong> 5 штаммов пробиотиков, инулин, FOS (фруктоолигосахариды).</p>`,
+            properties: `<ul><li>Восстанавливает микрофлору кишечника</li><li>Укрепляет иммунитет</li><li>Улучшает пищеварение</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong> по 1 саше в день, растворить в воде. Курс: 30 дней.</p>`
+        },
+        "diwata": {
+            name: "DIWATA", subtitle: "антипаразитарная программа", volume: "30 капсул", price: "2 990 ₽", image: "images/diwata.png", category: "health",
+            shortDesc: "Антипаразитарная программа для очищения организма",
+            description: `<p>DIWATA – комплексная программа для борьбы с паразитарными инфекциями и восстановления микрофлоры.</p>`,
+            composition: `<p><strong>Состав:</strong> экстракт гвоздики, экстракт пижмы, экстракт полыни, черный орех.</p>`,
+            properties: `<ul><li>Борется с паразитами</li><li>Восстанавливает микрофлору</li><li>Повышает иммунитет</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong> по 1 капсуле 2 раза в день. Курс: 30 дней.</p>`
+        },
+        "takaralife": {
+            name: "VERUM TAKARALIFE", subtitle: "Health Benefit", volume: "30 стиков", price: "3 950 ₽", image: "images/takaralife.png", category: "health",
+            shortDesc: "Уникальная формула для здоровья и долголетия",
+            description: `<p>VERUM TAKARALIFE – инновационная формула для поддержания здоровья и активного долголетия.</p>`,
+            composition: `<p><strong>Состав:</strong> экстракт женьшеня, родиола розовая, витамины группы B.</p>`,
+            properties: `<ul><li>Повышает энергию</li><li>Укрепляет иммунитет</li><li>Замедляет старение</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong> 1 стик в день, растворить в воде.</p>`
+        },
+        "brain": {
+            name: "VERUM HEALTHY BRAIN", subtitle: "ноотропная формула нового поколения", volume: "30 капсул", price: "3 250 ₽", image: "images/brain.png", category: "health",
+            shortDesc: "Для памяти, концентрации и когнитивных функций",
+            description: `<p>VERUM HEALTHY BRAIN – ноотропный комплекс для улучшения памяти, концентрации и когнитивных функций.</p>`,
+            composition: `<p><strong>Состав:</strong> гинкго билоба, бациопа моньери, фосфатидилсерин, магний.</p>`,
+            properties: `<ul><li>Улучшает память</li><li>Повышает концентрацию</li><li>Снижает умственную усталость</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong> по 1 капсуле 2 раза в день во время еды.</p>`
+        },
+        "nephro": {
+            name: "VERUM HEALTHY NEPHRO", subtitle: "комплексная защита почек", volume: "30 капсул", price: "2 550 ₽", image: "images/nephro.png", category: "health",
+            shortDesc: "Для здоровья почек и мочевыводящей системы",
+            description: `<p>VERUM HEALTHY NEPHRO – комплексная защита почек на клеточном уровне.</p>`,
+            composition: `<p><strong>Состав:</strong> экстракт клюквы, экстракт толокнянки, витамин C.</p>`,
+            properties: `<ul><li>Поддерживает здоровье почек</li><li>Обладает антибактериальным действием</li><li>Снижает риск воспалений</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong> по 1 капсуле 2 раза в день. Курс: 30 дней.</p>`
+        },
+        "liver": {
+            name: "VERUM HEALTHY LIVER", subtitle: "здоровье печени на клеточном уровне", volume: "30 капсул", price: "1 900 ₽", image: "images/liver.png", category: "health",
+            shortDesc: "Для поддержки печени и детоксикации",
+            description: `<p>VERUM HEALTHY LIVER – комплекс для поддержки печени и естественной детоксикации организма.</p>`,
+            composition: `<p><strong>Состав:</strong> экстракт расторопши, Betaine HCL, N-Ацетил-L-Цистеин, органический селен, микрокристаллическая целлюлоза, оболочка капсулы(желатин).</p>`,
+            properties: `<ul><li>Защищает клетки печени</li><li>Улучшает детоксикацию</li><li>Нормализует пищеварение</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong> взрослым по 1–2 капсулы в день во время еды. Продолжительность приёма — 1 месяц.</p>`
+        },
+        "fiber": {
+            name: "VERUM HEALTHY FIBER", subtitle: "уникальная формула клетчатки", volume: "30 стиков", price: "3 450 ₽", image: "images/fiber.png", category: "health",
+            shortDesc: "Растворимая клетчатка для здоровья кишечника",
+            description: `<p>Клетчатка VERUM HEALTHY FIBER серии ANTI-AGING DIET VERUM — уникальная формула, в которой идеально сочетаются свойства нерастворимой и растворимой клетчатки с пребиотическими, иммунологическими, антиоксидантными эффектами для
+сохранения здоровья, молодости, активности!</p>`,
+            composition: `<p><strong>Состав:</strong> натуральное волокно Биоцель XL 90, диетические волокна конжака, дигидрокверцетин (чистота экстракта 92%), экстракт листьев шелковицы белой 5%, лиственничный арабиногалактан нативный, сухой концентрат сока зелёного яблока, лимонная кислота, аспасвит Т.</p>`,
+            properties: `<ul><li>Стабилизация пищеварения и защита ЖКТ</li><li>Поддержка здоровой микрофлоры кишечника</li><li>Помощь в борьбе с лишним весом</li><li>Снижение оксидативного стресса</li><li>Укрепление иммунной защиты</li><li>Улучшение состояния кожи</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong> Производитель рекомендует принимать одну мерную ложку продукта (с горкой) перед едой, предварительно растворив в 50 мл воды (или другом напитке).</p>`
+        },
+        "kyanos": {
+            name: "VERUM KÝANOS", subtitle: "Капли для глаз", volume: "10 мл", price: "1 850 ₽", image: "images/kyanos.png", category: "health",
+            shortDesc: "Увлажняющие капли для глаз",
+            description: `<p>VERUM KÝANOS – увлажняющие капли для глаз с натуральными компонентами.</p>`,
+            composition: `<p><strong>Состав:</strong> гиалуроновая кислота, экстракт черники, витамин B12.</p>`,
+            properties: `<ul><li>Увлажняет глаза</li><li>Снимает усталость</li><li>Защищает от синего света</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong> закапывать 1-2 капли в каждый глаз 2-3 раза в день.</p>`
+        },
+        "youth": {
+            name: "VERUM YOUTH", subtitle: "Белково-энзимный смузи", volume: "12 г", price: "2 400 ₽", image: "images/youth.png", category: "health",
+            shortDesc: "Белково-энзимный смузи",
+            description: `<p>Белково-энзимный смузи «YOUTH» (с ростками пшеницы) — низкокалорийная протеиновая смесь из 7 видов растительных белков премиум-класса, содержащая полный сбалансированный аминокислотный состав (включая ЕАА и ВССА).</p>`,
+            composition: `<p><strong>Состав:</strong> белок семян конопли, белок миндаля, белок семян тыквы, белок семян подсолнечника, гороховый белок, белок семян льна, изолят соевого белка, ростки пшеницы, яблочная клетчатка, растительные сливки, L-цитруллин, бромелайн экстракт 80 GDU, папаин порошок, антиоксидантный фермент супероксиддисмутаза (COД, активность 10 000 U/G), метабиотик SynbiOFF® 100B, хрома пиколинат, ароматизатор пищевой «Дыня», медные комплексы хлорофиллинов, аспасвит Т.</p>`,
+            properties: `<ul><li>Увлажняет глаза</li><li>Полноценное белковое питание</li><li>Улучшения обменных процессов</li><li>Достижения целей по коррекции веса</li><li>Быстрое восстановление после физических нагрузок</li><li>Поддержания отличного самочувствия каждый день</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong> пить 2-3 раза в день.</p>`
+        },
+        
+        // ===== КРАСОТА =====
+        "Day Cream": {
+            name: "Jenel Day Cream", subtitle: "Крем дневной", volume: "50 мл.", price: "2 350 ₽", image: "images/Day Cream.png", category: "beauty",
+            shortDesc: "Комплекс для красоты и молодости кожи",
+            description: `<p>DAY CREAM создан для полноценного увлажнения и насыщения кожи полезными веществами в течение дня, создаёт защитный барьер от воздействия УФ-лучей и служит идеальной основой для макияжа.DAY CREAM — инновационная универсальная формула для ежедневного совершенствования кожи!</p>`,
+            composition: `<p><strong>Состав:</strong>RNА VERUM® (высокополимерная РНК (впРНК)), вода, Matrixyl 3000, Methylsilanol Mannuronate, культуральная среда ацидофильных лактобактерий, лизат лактобактерий, Syn-Ake (пептидный миорелаксант), оксид цинка, глицерил стеарат, цетеариловый спирт, цетиловый пальмитат, кокоглицериды, ксантановая камедь, масла: бабассу, макадамского ореха, зародышей пшеницы; соевый лецитин, экстракты граната, облепихи, кедра, рябины красной, солодки; бензиловый спирт, этилгексилглицерин, отдушка.</p>`,
+            properties: `<ul><li>Снижает напряжение мимических мышц</li><li>Разглаживает мелкие морщины</li><li>Кожа становится увлажнённой</li><li>Улучшает тон кожи</li><li>Повышает её плотность и эластичность</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong>  небольшое количество крема нанести на очищенную кожу лица, шеи и зону декольте массирующими движениями. Использовать ежедневно в утреннем уходе. Перед первым применением необходимо проверить на чувствительность к компонентам крема.</p>`
+        },
+        "O2 tonic": {
+            name: "Jenel O2 tonic", subtitle: "Кислородный тоник", volume: "100мл.", price: "1 100 ₽", image: "images/O2 tonic.png", category: "beauty",
+            shortDesc: "Комплекс для красоты и молодости кожи",
+            description: `<p>Инновационная формула O2 TONIC разработана для интенсивного увлажнения и омоложения кожи. Тоник создан на основе оксигенированной (кислородной) воды, которая повышает усвояемость активных веществ и нормализует клеточное дыхание.O2 TONIC — глубокое увлажнение и естественное сияние здоровой кожи!</p>`,
+            composition: `<p><strong>Состав:</strong>вода, Matrixyl 3000, Methylsilanol Mannuronate, гидролат корня солодки, цветков ромашки, хвоща полевого; берёзовый сок, бетаин, глицерин, пропиленгликоль, трутневый гомогенат, сульфат магния, папаин, витамин В₅, мочевина, лактат кальция, лактат магния, лактат калия, пролин, серин, аланин, бензиловый спирт, этилгексилглицерин, отдушка.</p>`,
+            properties: `<ul><li>замедляет старение кожи</li><li>снижает напряжение мимических мышц</li><li>успокаивает кожу</li><li>насыщает её влагой</li><li>обеспечивает антисептическую защиту</li><li>возвращает коже упругость и эластичность</li><li>осветляет и выравнивает цвет лица</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong>распылить тоник-мист на лицо и шею или на ватный диск и протереть кожу. Не смывать. Перед применением встряхнуть флакон, возможно образование осадка.</p>`
+        },
+        "fundesee": {
+            name: "FUNDESEE", subtitle: "Омолаживающая маска с лифтинг эффектом", volume: "60г (10шт х 6г)", price: "12 500 ₽", image: "images/fundesee.png", category: "beauty",
+            shortDesc: "Комплексный лифтинг-уход и омоложение на клеточном уровне",
+            description: `<p>Омолаживающая маска с лифтинг эффектом FUNDESEE - это Ваш премиальный уход за кожей лица на каждый день, который обеспечит комплексный лифтинг-уход и омоложение на клеточном уровне. Омолаживающая маска с лифтинг эффектом FUNDESEE содержит повышенную концентрацию молекул воды.</p>`,
+            composition: `<p><strong>Состав:</strong> Протеин, в состав которого входят 18 видов аминокислот.Натуральное полимерное волокно, полученное из шелка.Полисахарид, который обладает высокой адсорбционной способностью.Гиалуроновая кислота, которая насыщает кожу влагой и делает ее гладкой и эластичной.</p>`,
+            properties: `<ul><li>Увлажняет</li><li>Очищает</li><li>Оказывает антиоксидантное действие</li><li>Устраняет мешки и темные круги вокруг глаз</li><li>Лифтинг эффект</li><li>Разглаживание морщин</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong> применяется на чистую сухую кожу без предварительного нанесения кремов или сывороток. Маска плотно прикладывается к лицу, разглаживается, держится 15–30 минут, после чего снимается, а остатки состава часто требуют смывания водой.</p>`
+        },
+        "алоэ вера": {
+            name: "Гель алоэ вера", subtitle: "Алоэ вера", volume: "50г.", price: "1 900 ₽", image: "images/алоэ вера.png", category: "beauty",
+            shortDesc: "Увлажняющее средство для лица",
+            description: `<p>Гель алоэ вера (98–100%) — это универсальное увлажняющее средство для лица, тела и волос, которое глубоко увлажняет, успокаивает раздражения, снимает покраснения после загара и ускоряет регенерацию клеток. Обычно он имеет легкую текстуру, быстро впитывается и подходит для всех типов кожи, включая чувствительную и проблемную.</p>`,
+            composition: `<p><strong>Состав:</strong> Сок алоэ Barbadensis (99,8%): Основной компонент, обеспечивающий увлажнение, регенерацию и успокаивающий эффект.Консерванты: Бензоат натрия, сорбат калия (в минимальных количествах для сохранения свежести продукта, что подтверждает).</p>`,
+            properties: `<ul><li>Интенсивно питает, делает кожу эластичной, не оставляя липкой пленки.</li><li>Эффективно успокаивает раздраженную кожу, снимает воспаления.</li><li> Можно использовать как базу под макияж, маску или средство против прыщей.</li><li>Активирует волосяные фолликулы, помогает при сухости кожи головы.</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong> наносить на очищенную кожу лица утром и вечером.</p>`
+        },
+        "сleanser": {
+            name: "Jenel Soft Foam Cleanser", subtitle: "Нежная очищающая пенка", volume: "150 мл", price: "2 290 ₽", image: "images/сleanser.png", category: "beauty",
+            shortDesc: "Воздушная пенка для умывания",
+            description: `<p>SOFT FOAM CLEANSER создана для ежедневного мягкого очищения любой, в том числе чувствительной, кожи.</p>`,
+            composition: `<p><strong>Состав:</strong> вода, Matrixyl 3000, Methylsilanol Mannuronate, глицерин, пробиотический продукт из ягод чёрной смородины, вишни, ирги; кокамидопропилбетаин, натрия лауроилсаркозинат, бетаин, экстракт ламинарии, экстракт фукуса, экстракт голубой водоросли, экстракт уснеи, сквалан, морской коллаген, соль гималайская, масло семян рыжика, бензиловый спирт, этилгексилглицерин, молочная кислота, отдушка.</p>`,
+            properties: `<ul><li>бережно очищает кожу, не нарушая гидролипидную мантию</li><li>увлажняет и осветляет кожу</li><li>повышает эластичность и тургор</li><li>препятствует процессам старения</li><li>не вызывает ощущения стянутости и дискомфорта</li><li>способствует обновлению клеток кожи</li><li>даёт лёгкий отбеливающий эффект</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong> небольшое количество пенки нанести на влажную кожу лица, слегка помассировать, затем смыть водой.</p>`
+        },
+        "эссенция": {
+            name: "Золотая эссенция", subtitle: "Сыворотка с золотом", volume: "50 мл", price: "3 800 ₽", image: "images/эссенция.png", category: "beauty",
+            shortDesc: "уход за кожей лица с антивозрастным эффектом",
+            description: `<p>Золотая эссенция Whieda — это китайское косметическое средство объемом 50 мл, предназначенное для борьбы с признаками старения, увлажнения и улучшения текстуры кожи. Она содержит золотые частицы, обеспечивает глубокое питание, подходит для возрастной кожи (30+) и применяется как интенсивный уход. </p>`,
+            composition: `<p><strong>Состав:</strong> Золотые частицы: Способствуют антиоксидантной защите, стимулируют обновление клеток и придают сияние.Гиалуроновая кислота: Обеспечивает глубокое увлажнение.Экстракт гамамелиса: Оказывает противовоспалительный эффект, успокаивает кожу.Глицерин: Удерживает влагу в верхних слоях кожи.Компоненты основы (карбомер, ксантановая камедь, гидроксиэтилцеллюлоза): Создают гелевую текстуру, способствуют глубокому проникновению активных веществ.Увлажняющие и связывающие агенты: Гликозил трегалоза, мочевина, пропиленгликоль, PEG-40.</p>`,
+            properties: `<ul><li>Помогает снять головную боль</li><li>Применяется при проблемах с шейным отделом позвоночника и плечевыми суставами</li><li> Помогает бороться с бессонницей</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong> наносится на очищенную, тонизированную кожу лица 1-2 раза в день. Несколько капель распределяют мягкими похлопывающими движениями до полного впитывания перед использованием крема. Средство обеспечивает лифтинг, увлажнение и сияние, подготавливая кожу к последующему уходу.</p>`
+        },
+        "nano-silver": {
+            name: "NANO SILVER", subtitle: "Серебряный спрей", volume: "100 мл", price: "1 750 ₽", image: "images/nano silver.png", category: "beauty",
+            shortDesc: "Уникальное коллоидное наносеребро",
+            description: `<p>NANO SILVER – высокоэффективный натуральный биоцид нового поколения, который обезвреживает и/или оказывает регулирующий эффект на многие вредные виды организмов.</p>`,
+            composition: `<p><strong>Состав:</strong> вода дистиллированная, серебро.</p>`,
+            properties: `<ul><li>Уменьшение акне и воспалений</li><li>Контроль жирности</li><li>Свежий вид кожи</li><li>Длительный антибактериальный эффект</li><li>Улучшение заживления микроповреждений</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong> перед каждым применением необходимо встряхнуть флакон, направить сопло распылителя в нужном направлении и нажать на головку распы-лителя.</p>`
+        },
+        
+        // ===== ПРИБОРЫ =====
+        "Энергетический шарф": {
+            name: "Энергетический шарф", subtitle: "Палантин FOHERB", volume: "198*140см ", price: "13 450 ₽", image: "images/Энергетический шарф.png", category: "devices",
+            shortDesc: "Комплекс для здоровой спины",
+            description: `<p>Энергетический палантин FOHERB — это забота о Вашем здоровье, комфорт и элегантность. Основу Энергетического палантина составляют поливолокно и германий. Различные волокна, которые были научно подобраны в правильном соотношении, прекрасно сочетаются с германием.</p>`,
+            composition: `<p><strong>Состав:</strong> 47% хлопок, 45% полиэстер, 8% спандекс.</p>`,
+            properties: `<ul><li>Улучшает кровообращение и микроциркуляцию</li><li> Снимает усталость и напряжение в плечах и в области шеи</li><li>Стимулирует обмен веществ, активизирует клетки тканей</li><li>Способствует выведению из организма токсинов</li><li> Замедляет старение кожи</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong>  Палантин следует носить так, чтобы его функциональная часть (сторона с нанесенными частицами или магнитами) прилегала к телу, особенно в области шеи, плеч или спины.</p>`
+        },
+        "Турмалиновый магнитный пояс": {
+            name: "Турмалиновый магнитный пояс", subtitle: "Поясничный бандаж", volume: "универсальный", price: "19 900 ₽", image: "images/Турмалиновый магнитный пояс.png", category: "devices",
+            shortDesc: "Магнитный пояс для поясничного отдела",
+            description: `<p>Турмалиновый магнитный пояс – ортопедическое изделие из эластичной ткани с турмалиновыми кристаллами (3-5 мм) и магнитами. Он создает эффект прогревания, испускает длинноволновые инфракрасные лучи и отрицательные ионы, улучшая микроциркуляцию крови, снимая боли в пояснице, напряжение мышц, помогая при радикулите и остеохондрозе.</p>`,
+            composition: `<p><strong>Состав:</strong> Ткань с вкраплениями турмалина, система магнитов.</p>`,
+            properties: `<ul><li>Оздоровительный эффект</li><li>Усиление перистальтики кишечника</li><li>Снижение жировых отложений</li><li>Рекомендован при повреждении поясничных мышц</li><li>Показано применение при заболеваниях мочеполовой системы</li><li>Улучшение состояния сердечно-сосудистой системы</li><li>Природный минерал</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong> Надевать пояс прямо на поясницу (можно на живот) и закрепить, регулируя степень натяжения накладок, выберите наиболее комфортную для вас. Обычно в течение 30-ти минут уже можно ощутить заметные тепловые ощущения. Ежедневно рекомендуется использовать продукт 2 раза в день от 15–30 минут (увлажненным) и до 3–5 часов(сухим) каждый раз. По ситуации можно увеличивать время ношения обхвата. Некоторым особенно чувствительным людям при появлении ощущений жжения кожи рекомендуется уменьшить время ношения накладок – хотя такие явления соответствуют норме и не могут причинить ущерб кожным покровам тела. Время ношения обхвата зависит от индивидуального состояния организма того или иного человека; если при ношении обхвата появилось покраснение или ощущения жжения, то поскольку это соответствует норме, не следует переживать – просто на время снимите обхват и дождитесь восстановления организма. Во время сна применять не рекомендуется. Продукт полностью без            опасен для кожи.</p>`
+        },
+        "Массажёр Magic Foherb": {
+            name: "Массажёр Magic Foherb 3.0 (TUV)", subtitle: "Биомассажер Magic", volume: "1 прибор, 2.5–3 кг", price: "65 000 ₽", image: "images/Массажёр Magic Foherb.png", category: "devices",
+            shortDesc: "Биоэнергетический прибор",
+            description: `<p>Массажёр Magic Foherb 3.0 (TUV) — это биоэнергетический прибор, совмещающий импульсный, лазерный, вакуумный и термомассаж для восстановления организма. Он улучшает кровообращение, выводит токсины и повышает тонус мышц. Эргономичный аппарат работает от сети, применяясь для тела, ног и бедер.</p>`,
+            composition: `<p><strong>Комплектация:</strong> Массажер – 1шт;Токопроводящие перчатки – 1 пара;Массажный крем – 1 шт;Энергетический крем – 1 шт.</p>`,
+            properties: `<ul><li>Повышению температуры тела и активации иммунной системы</li><li>Улучшению кровообращения и обмена веществ</li><li>Снятию мышечной усталости и отёков</li><li>Ускорению заживления ран и уменьшению воспалений</li><li>Активации механизмов самовосстановления организма</li><li>Общему укреплению здоровья и повышению энергии</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong> Подготовка: Перед началом процедуры оператор надевает перчатки, которые должны быть полностью смочены в воде для обеспечения проводимости тока.Настройка: Включите прибор и установите комфортный уровень интенсивности (рекомендуется начинать с минимальных значений, постепенно повышая их).</p>`
+        },
+        "Набор прибора Вэнтун": {
+            name: "Набор прибора Вэнтун 1.0", subtitle: " LED-терапия", volume: "1 прибор, 4 кг", price: "200 000 ₽", image: "images/Прибор Вэнтун.png", category: "devices",
+            shortDesc: "Многофункциональный физиотерапевтический комплекс",
+            description: `<p>Прибор «Вэнтун 1.0» объединяет принципы традиционной китайской медицины (воздействие на акупунктурные точки и меридианы) и современные технологии физиотерапии.</p>`,
+            composition: `<p><strong>Комплектация:</strong> Основной блок аппарата «Вэнтун 1.0»; Нагревательный пояс; LED‑панель с красным и синим спектром излучения; Специальный прогревающий гель; Пульт дистанционного управления; Инструкция по эксплуатации.</p>`,
+            properties: `<ul><li>Улучшает микроциркуляцию</li><li>Повышает тонус кожи</li><li>Уменьшает отёчность</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong> Подготовка:разместите прибор на ровной устойчивой поверхности;равномерно нанесите прогревающий гель на подошвы обеих ног (сохраняйте влажность во время процедуры); включите прибор (управление — через сенсорный экран или пульт ДУ); продолжительность процедуры — 40 минут</p>`
+        },
+        "Стельки c анионами": {
+            name: "Коррекционные стельки c анионами", subtitle: "Стельки", volume: "1 шт.", price: "11 500 ₽", image: "images/стельки.png", category: "devices",
+            shortDesc: "Ортопедические изделия",
+            description: `<p>Коррекционные стельки с анионами — это ортопедические изделия, которые сочетают анатомическую поддержку стопы с технологическим воздействием отрицательно заряженных ионов (анионов).</p>`,
+            composition: `<p><strong>Состав:</strong> Содержат активированный уголь (адсорбция запахов), ионы серебра (антибактериальный эффект) и влагоотводящие мембраны.</p>`,
+            properties: `<ul><li>Локальное воздействие на стопы</li><li>Улучшение кровообращения и обменных процессов</li><li>Антибактериальный и гигиенический эффект</li><li>Влияние на опорно‑двигательный аппарат и осанку</li><li>Повышение выносливости и энергии в течение дня</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong> убедитесь, что обувь подходит по размеру и полноте, не рекомендуется носить стельки с обувью на высоком каблуке (выше 6 см); при необходимости обрежьте по линии разметки под ваш размер (если модель предусматривает это); поместите коррекционные стельки анионовым чипом/слоем вверх.</p>`
+        },
+        "Высокотехнологичные компьютерные очки": {
+            name: "Высокотехнологичные компьютерные очки", subtitle: "Очки", volume: "1 шт.", price: "5 500 ₽", image: "images/компьютерные очки.png", category: "devices",
+            shortDesc: "Компьютерные очки",
+            description: `<p>Высокотехнологичные очки – это Ваша защита от облучения, снятие усталости глаз, улучшенные технологии для работы за компьютером, а также для защиты, укрепления и оптимизации вашего зрения.</p>`,
+            composition: `<p><strong>Антибликовое покрытие.</strong> Уменьшает отражения от экрана и окружающего освещения, что снижает напряжение глаз и улучшает чёткость изображения.</p>`,
+            properties: `<ul><li>снижение зрительного утомления, сухости и покраснения глаз;</li><li>уменьшение головных болей, связанных с работой за компьютером;</li><li>улучшение чёткости видения и концентрации внимания;</li><li>защита от негативного воздействия экранов (синий свет, УФ-излучение);</li><li>предотвращение развития компьютерного зрительного синдрома.</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong> Надевайте очки за 5–10 минут до начала работы за компьютером, чтобы глаза успели адаптироваться. Снимайте очки на 10–15 минут каждые 2 часа непрерывного использования.</p>`
+        },
+        "резон": {
+            name: "Квантовый низкочастотный резонатор для воды", volume: "Кейс — 16 упаковок. 1 упаковка — 30 шт.", price: "31 100 ₽", image: "images/резонатор.png", category: "devices",
+            shortDesc: "Резонатор воды",
+            description: `<p>Квантовый низкочастотный резонатор для воды — это устройство, использующее технологию квантового низкочастотного резонанса для изменения структуры воды и её воздействия на организм.Согласно описанию производителей, такая технология направлена на улучшение свойств воды и её влияния на организм.</p>`,
+            composition: `<p><strong>Состав:</strong> Молекулярно-резонансный модуль, частота 7,8 Гц, которая, по заявлениям производителей, влияет на структуру воды.Электрод: титановая платина, причём указывается толщина покрытия — 3 мкм.Корпус, закалённое оргстекло.Аккумулятор, литиевая батарея.Дополнительные элементы:элементы для разделения водорода и кислорода.</p>`,
+            properties: `<ul><li>усиление усвоения и обмена веществ на клеточном уровне</li><li>снижение вязкости крови и риска сердечно-сосудистых заболеваний</li><li>нормализация pH-баланса организма</li><li>улучшение фильтрации и растворяющей способности, снижение уровня холестерина</li><li>антибактериальный эффект, укрепление иммунитета</li><li>очистка воды от хлора и снижение риска отравления</li><li>повышенная стойкость к окислению, очистка от свободных радикалов, замедление старения</li><li>снижение риска мутации клеток и возникновения онкозаболеваний</li><li>радиационная защита</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong> Заполните ёмкость резонатора водой (или другой жидкостью) до указанного уровня (обычно до 2–2,5 л).Включите устройство в сеть (100–240 В).Активируйте режим низкочастотной обработки (7,8 Гц).Оставьте на 20 минут (стандартное время обработки).После завершения цикла используйте воду по назначению (питьё, приготовление пищи, увлажнение кожи и т. п.).Очищайте ёмкость после каждого использования согласно инструкции.</p>`
+        },
+        "Водородный стержень": {
+            name: "Водородный стержень", subtitle: "Cтержень Whieda", volume: "2 шт.", price: "5 000 ₽", image: "images/стержень.png", category: "devices",
+            shortDesc: "Водородный стержень для воды",
+            description: `<p>Водородный стержень – это устройство, которое позволяет в домашних условиях готовить вкусную, полезную, насыщенную водородом воду.</p>`,
+            composition: `<p><strong>Состав:</strong> нержавеющая сталь, турмалин, камень Майфанши (Майфан) нано‑серебро, ионы кальция.</p>`,
+            properties: `<ul><li>Восстановление природных свойств воды, нормализация баланса Рн</li><li>Уменьшение размеров молекулярных кластеров воды</li><li>Улучшение структуры воды, антиоксидантный эффект</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong> Откройте упаковку.Приготовьте раствор: смешайте воду и 3 % уксус в соотношении 1 : 1 (в пластиковой бутылке объёмом 500 мл).Поместите в бутылку водородный стержень, закройте крышкой и встряхивайте 10 секунд.Откройте крышку и оставьте на 15 минут.Тщательно промойте стержень и бутылку проточной водой до тех пор, пока вода не станет прозрачной.</p>`,
+        },
+        "Мини сауна БА-ГУА": {
+            name: "Мини сауна БА-ГУА", subtitle: "портативная сауна", volume: "70 × 80 × 95 сантиметров. Вес устройства — 9,5–11 кг.", price: "68 000 ₽", image: "images/сауна.png", category: "devices",
+            shortDesc: "оздоровительная мини сауна",
+            description: `<p>Мини-сауна «Ба-Гуа» — это портативная инфракрасная сауна, которая сочетает технологию инфракрасного облучения с использованием лечебных камней (турмалина и нефрита). Она предназначена для домашнего использования и обещает ряд оздоровительных эффектов.</p>`,
+            composition: `<p><strong>Состав:</strong> Камни - нефрит, турмалин. Стульчик и коврик для ног.</p>`,
+            properties: `<ul><li>улучшение микроциркуляции крови и метаболизма</li><li>детоксикация (выведение токсинов и шлаков)</li><li>помощь в похудении и борьбе с целлюлитом</li><li>регулирование нервной системы, снятие стресса и улучшение качества сна</li><li>улучшение состояния кожи и косметологический эффект</li><li>снятие усталости</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong> На что следует обратить внимание:-перед процедурой следует принять душ, снять макияж;-нельзя делать процедуры после переедания или на голодный желудок;-перед процедурой нужно выпить достаточное количество теплой воды, а во время использования пить воду по мере необходимости;-при процедуре запрещается проводить растирание тела, пот можно промакивать полотенцем;-после процедуры в течение 6 часов не рекомендуется выходить на улицу в неблагоприятную погоду (сильный ветер, холод), также в течение 2 часов не следует употреблять холодные напитки и пищу.Примечание: пожилым людям со слабым здоровьем рекомендуется использовать данный прибор под присмотром членов семьи.</p>`
+        },
+        "очиститель": {
+            name: "Многофункциональный очиститель воздуха", subtitle: "очиститель воздуха Whieda", volume: "1 шт.", price: "30 600 ₽", image: "images/очиститель.png", category: "devices",
+            shortDesc: "Много функциональный очиститель воздуха Whieda",
+            description: `<p>Многофункциональный очиститель воздуха Whieda — это устройство, предназначенное для очистки воздуха от вредных веществ, микроорганизмов и улучшения микроклимата в помещении. Он сочетает несколько технологий для борьбы с загрязнениями, включая УФ-стерилизацию, многоуровневую фильтрацию и ионизацию.</p>`,
+            composition: `<p><strong>Состав:</strong> Нано-серебро, первичный фильтр, активный фильтр, HEPA-фильтр.</p>`,
+            properties: `<ul><li>Удаление вредных веществ</li><li>УФ-стерилизация</li><li>Многослойная фильтрация</li><li>Ионизация</li><li>Тихая работа</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong> Включение/выключение. Осуществляется с помощью пульта дистанционного управления (кнопка On/off или Вкл./Выкл.). По умолчанию прибор работает в режиме средней скорости ветра при каждом запуске.</p>`
+        },
+        "Активатор клеток": {
+            name: "Air Ionizer", subtitle: "косметический прибор", volume: "1 шт.", price: "50 000 ₽", image: "images/активатор.png", category: "devices",
+            shortDesc: "Активатор",
+            description: `<p>Активатор клеток Whieda — высокотехнологичный физиотерапевтический прибор, созданный на основе сочетания современных технологий и принципов традиционной китайской медицины. Не является медицинским прибором или лечебным средством.</p>`,
+            composition: `<p><strong>Характеристики:</strong> Инфракрасное излучение, Терагерцевое излучение (0,03–0,3 ТГц), Гиромагнетизм, Отрицательные ионы.</p>`,
+            properties: `<ul><li>стимулировать обмен веществ и микроциркуляцию крови и лимфы</li><li>укреплять иммунитет</li><li>замедлять процессы старения</li><li>улучшать работу внутренних органов и желёз</li><li>придавать энергию и бодрость, снижать усталость</li></ul>`,
+            recommendations: `<p><strong>Способ применения:</strong> Рекомендуется следующая схема курса: неделя применения, перерыв 3-5 дней, затем следующая неделя. Одну и ту же зону или точки можно обрабатывать только 1-2 раза в день, не больше. Каждый раз перед процедурой нужно выпить 300 — 500 мл воды, после процедуры отдохнуть минимум 5 минут, а затем выпить еще стакан воды.</p>`
+        }
+    };
+    
+    // Получаем параметр id из URL
+    function getProductId() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('id');
+    }
+    
+    // Загружаем данные товара
+    function loadProduct() {
+        const productId = getProductId();
+        const product = productsData[productId];
+        
+        if (!product) {
+            document.body.innerHTML = '<div style="text-align:center; padding:100px"><h1>Товар не найден</h1><a href="index.html">Вернуться на главную</a></div>';
+            return;
+        }
+        
+        document.title = `${product.name} - Формула здоровья`;
+        document.getElementById('productName').textContent = product.name;
+        document.getElementById('productSubtitle').textContent = product.subtitle;
+        document.getElementById('productShortDesc').textContent = product.shortDesc;
+        document.getElementById('productVolume').textContent = product.volume;
+        document.getElementById('productPrice').textContent = product.price;
+        document.getElementById('productImage').src = product.image;
+        document.getElementById('productImage').alt = product.name;
+        
+        document.getElementById('descriptionContent').innerHTML = product.description;
+        document.getElementById('compositionContent').innerHTML = product.composition;
+        document.getElementById('propertiesContent').innerHTML = product.properties;
+        document.getElementById('recommendationsContent').innerHTML = product.recommendations;
+        
+        // Настройка кнопки "Назад"
+        const backLink = document.getElementById('backLink');
+        if (product.category === 'health') {
+            backLink.href = 'health.html';
+        } else if (product.category === 'beauty') {
+            backLink.href = 'beauty.html';
+        } else if (product.category === 'devices') {
+            backLink.href = 'devices.html';
+        } else {
+            backLink.href = 'index.html';
+        }
+    }
+    
+    // Переключение табов
+    function initTabs() {
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.getAttribute('data-tab');
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+    }
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        loadProduct();
+        initTabs();
+        
+        document.getElementById('buyBtn').addEventListener('click', () => {
+            alert('Товар добавлен в корзину!');
+        });
+    });
+</script>
+</body>
+</html>

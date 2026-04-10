@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Приборы и Дом - Формула здоровья</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .catalog-page {
+            padding: 120px 0 60px;
+            background: #fff;
+        }
+        .catalog-page-header {
+            text-align: left;
+            margin-bottom: 50px;
+        }
+        .catalog-page-header h1 {
+            font-size: 42px;
+            font-weight: 800;
+            color: #46211A;
+            margin-bottom: 15px;
+        }
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            list-style: none;
+            padding: 0;
+        }
+        .breadcrumb a {
+            color: #64b61a;
+            text-decoration: none;
+        }
+        .breadcrumb span {
+            color: #693D3D;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #e8ddd7;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+            border-color: #64b61a;
+        }
+        .product-image {
+            height: 180px;
+            background: #f9f6f3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .product-image img {
+            max-width: 100%;
+            max-height: 140px;
+            object-fit: contain;
+        }
+        .product-info {
+            padding: 16px;
+        }
+        .product-info h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #46211A;
+        }
+        .product-desc {
+            font-size: 12px;
+            color: #693D3D;
+            margin-bottom: 12px;
+            line-height: 1.4;
+            height: 34px;
+            overflow: hidden;
+        }
+        .product-price {
+            font-size: 20px;
+            font-weight: 800;
+            color: #64b61a;
+            margin-bottom: 12px;
+        }
+        .product-actions {
+            display: flex;
+            gap: 8px;
+        }
+        .btn-more, .btn-buy {
+            padding: 8px 0;
+            font-size: 12px;
+            border-radius: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            font-family: inherit;
+        }
+        .btn-more {
+            flex: 1;
+            background: #46211A;
+            color: white;
+            border: none;
+        }
+        .btn-more:hover {
+            background: #64b61a;
+            transform: translateY(-2px);
+        }
+        .btn-buy {
+            background: #64b61a;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+        }
+        .btn-buy:hover {
+            background: #4d8e14;
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            .catalog-page { padding: 100px 0 40px; }
+            .catalog-page-header h1 { font-size: 32px; }
+            .products-grid { gap: 15px; }
+            .product-image { height: 150px; }
+            .product-image img { max-height: 110px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========== ШАПКА ========== -->
+<div class="header-top-white">
+    <div class="container">
+        <div class="header-top-row">
+            <div class="logo-col">
+                <a href="index.html" class="logo-link">
+                    <img src="logo.png" alt="Формула здоровья" class="logo-img">
+                    <span class="logo-text-gradient">Формула здоровья</span>
+                </a>
+            </div>
+            <div class="auth-col">
+                <a href="login.html" class="auth-link-white">Регистрация</a> | <a href="login.html" class="auth-link-white">Вход в кабинет</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header-bottom-green">
+    <div class="container">
+        <div class="header-bottom-row">
+            <nav class="nav-menu">
+                <div class="dropdown-wrapper">
+                    <a href="#" class="nav-link-green">
+                        Продукты <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-mega-menu">
+                        <div class="mega-menu-container">
+                            <div class="mega-menu-section">
+                                <ul>
+                                    <li><a href="new-items.html"><i class="fas fa-star"></i> Новинки</a></li>
+                                    <li><a href="health.html"><i class="fas fa-heartbeat"></i> Здоровье</a></li>
+                                    <li><a href="beauty.html"><i class="fas fa-spa"></i> Красота</a></li>
+                                    <li><a href="devices.html"><i class="fas fa-microchip"></i> Приборы/Аксессуары</a></li>
+                                    <li><a href="all-products.html" class="all-link"><i class="fas fa-th-large"></i> Смотреть всё</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dropdown-wrapper-about">
+                    <a href="#" class="nav-link-green dropdown-toggle-about">
+                        О нас <i class="fas fa-chevron-down dropdown-arrow-about"></i>
+                    </a>
+                    <div class="dropdown-menu-about">
+                        <div class="mega-menu-container-about">
+                            <div class="mega-menu-section-about">
+                                <h4>О компании</h4>
+                                <ul>
+                                    <li><a href="history.html"><i class="fas fa-book-open"></i> История</a></li>
+                                    <li><a href="channels.html"><i class="fas fa-users"></i> Наши каналы</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dropdown-wrapper-info">
+                    <a href="#" class="nav-link-green dropdown-toggle-info">
+                        Информация <i class="fas fa-chevron-down dropdown-arrow-info"></i>
+                    </a>
+                    <div class="dropdown-menu-info">
+                        <div class="mega-menu-container-info">
+                            <div class="mega-menu-section-info">
+                                <h4>Полезное</h4>
+                                <ul>
+                                    <li><a href="articles.html"><i class="fas fa-file-alt"></i> Статьи</a></li>
+                                    <li><a href="reviews.html"><i class="fas fa-star"></i> Отзывы</a></li>
+                                    <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Контакты</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="faq.html" class="nav-link-green">FAQ</a>
+            </nav>
+            <div class="social-icons">
+                <a href="#" class="social-icon-green" title="Telegram"><i class="fab fa-telegram"></i></a>
+                <a href="#" class="social-icon-green" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="social-icon-green" title="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header-spacer"></div>
+
+<main class="catalog-page">
+    <div class="container">
+        <div class="catalog-page-header">
+            <h1>Приборы/Аксессуары</h1>
+            </ul>
+        </div>
+        
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image"><img src="images/Энергетический шарф.png" alt="Энергетический шарф" onerror="this.parentElement.innerHTML='🔴'"></div>
+                <div class="product-info">
+                    <h3>Энергетический шарф</h3>
+                    <div class="product-desc">Комплекс для здоровой спины</div>
+                    <div class="product-price">13 450 ₽</div>
+                    <div class="product-actions">
+                        <a href="product-detail.html?id=Энергетический шарф" class="btn-more">Подробнее</a>
+                        <button class="btn-buy" data-product="Энергетический шарф">Купить</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image"><img src="images/Турмалиновый магнитный пояс.png" alt="Турмалиновый магнитный пояс" onerror="this.parentElement.innerHTML='⚡'"></div>
+                <div class="product-info">
+                    <h3>Турмалиновый пояс</h3>
+                    <div class="product-desc">Магнитный пояс для поясничного отдела</div>
+                    <div class="product-price">19 900 ₽</div>
+                    <div class="product-actions">
+                        <a href="product-detail.html?id=Турмалиновый магнитный пояс" class="btn-more">Подробнее</a>
+                        <button class="btn-buy" data-product="Турмалиновый магнитный пояс">Купить</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image"><img src="images/Массажёр Magic Foherb.png" alt="Массажёр Magic Foherb" onerror="this.parentElement.innerHTML='💧'"></div>
+                <div class="product-info">
+                    <h3>Массажёр Magic</h3>
+                    <div class="product-desc">Биоэнергетический прибор</div>
+                    <div class="product-price">65 000 ₽</div>
+                    <div class="product-actions">
+                        <a href="product-detail.html?id=Массажёр Magic Foherb" class="btn-more">Подробнее</a>
+                        <button class="btn-buy" data-product="Массажёр Magic Foherb">Купить</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image"><img src="images/Прибор Вэнтун.png" alt="Прибор Вэнтун" onerror="this.parentElement.innerHTML='🌀'"></div>
+                <div class="product-info">
+                    <h3>Прибор Вэнтун</h3>
+                    <div class="product-desc">Многофункциональный физиотерапевтический комплекс</div>
+                    <div class="product-price">200 000 ₽</div>
+                    <div class="product-actions">
+                        <a href="product-detail.html?id=Набор прибора Вэнтун" class="btn-more">Подробнее</a>
+                        <button class="btn-buy" data-product="Набор прибора Вэнтун">Купить</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image"><img src="images/стельки.png" alt="Стельки c анионами" onerror="this.parentElement.innerHTML='💡'"></div>
+                <div class="product-info">
+                    <h3>HEALTH PRIORITY</h3>
+                    <div class="product-desc">Ортопедические изделия</div>
+                    <div class="product-price">11 500 ₽</div>
+                    <div class="product-actions">
+                        <a href="product-detail.html?id=Стельки c анионами" class="btn-more">Подробнее</a>
+                        <button class="btn-buy" data-product="Стельки c анионами">Купить</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image"><img src="images/компьютерные очки.png" alt="Компьютерные очки" onerror="this.parentElement.innerHTML='🌿'"></div>
+                <div class="product-info">
+                    <h3>Компьютерные очки</h3>
+                    <div class="product-desc">Высокотехнологичные очки</div>
+                    <div class="product-price">5 500 ₽</div>
+                    <div class="product-actions">
+                        <a href="product-detail.html?id=Высокотехнологичные компьютерные очки" class="btn-more">Подробнее</a>
+                        <button class="btn-buy" data-product="Высокотехнологичные компьютерные очки">Купить</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image"><img src="images/резонатор.png" alt="Квантовый низкочастотный резонатор для воды" onerror="this.parentElement.innerHTML='💆'"></div>
+                <div class="product-info">
+                    <h3>Резонатор воды</h3>
+                    <div class="product-desc">Квантовый низкочастотный резонатор для воды+</div>
+                    <div class="product-price">31 100 ₽</div>
+                    <div class="product-actions">
+                        <a href="product-detail.html?id=резон" class="btn-more">Подробнее</a>
+                        <button class="btn-buy" data-product="Квантовый низкочастотный резонатор для воды">Купить</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image"><img src="images/стержень.png" alt="Водородный стержень" onerror="this.parentElement.innerHTML='🦶'"></div>
+                <div class="product-info">
+                    <h3>Водородный стержень</h3>
+                    <div class="product-desc">Водородный стержень для воды</div>
+                    <div class="product-price">5 000 ₽</div>
+                    <div class="product-actions">
+                        <a href="product-detail.html?id=Водородный стержень" class="btn-more">Подробнее</a>
+                        <button class="btn-buy" data-product="Водородный стержень">Купить</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image"><img src="images/сауна.png" alt="Мини сауна БА-ГУА" onerror="this.parentElement.innerHTML='🌬️'"></div>
+                <div class="product-info">
+                    <h3>Сауна БА-ГУА</h3>
+                    <div class="product-desc">портативная инфракрасная сауна</div>
+                    <div class="product-price">68 000 ₽</div>
+                    <div class="product-actions">
+                        <a href="product-detail.html?id=Мини сауна БА-ГУА" class="btn-more">Подробнее</a>
+                        <button class="btn-buy" data-product="Мини сауна БА-ГУА">Купить</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image"><img src="images/очиститель.png" alt="Очиститель воздуха" onerror="this.parentElement.innerHTML='💪'"></div>
+                <div class="product-info">
+                    <h3>Очиститель воздуха</h3>
+                    <div class="product-desc">Много функциональный очиститель воздуха Whieda</div>
+                    <div class="product-price">30 600 ₽</div>
+                    <div class="product-actions">
+                        <a href="product-detail.html?id=очиститель" class="btn-more">Подробнее</a>
+                        <button class="btn-buy" data-product="Очиститель воздуха">Купить</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image"><img src="images/активатор.png" alt="Активатор клеток Whieda" onerror="this.parentElement.innerHTML='⚡'"></div>
+                <div class="product-info">
+                    <h3>Активатор клеток</h3>
+                    <div class="product-desc">высокотехнологичный физиотерапевтический прибор</div>
+                    <div class="product-price">50 000 ₽</div>
+                    <div class="product-actions">
+                        <a href="product-detail.html?id=Активатор клеток" class="btn-more">Подробнее</a>
+                        <button class="btn-buy" data-product="Активатор клеток">Купить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- ПОДВАЛ -->
+<footer class="footer-new">
+    <div class="footer-bg"></div>
+    <div class="container">
+        <div class="footer-content">
+            <!-- Левая колонка: логотип и название -->
+            <div class="footer-brand">
+                <div class="footer-logo-wrapper">
+                    <img src="logo.png" alt="Формула здоровья" class="footer-logo-img-new">
+                    <span class="footer-brand-name">Формула здоровья</span>
+                </div>
+           <!-- Иконки соцсетей под логотипом и названием -->
+                <div class="footer-social">
+                    <a href="#" class="footer-social-icon" title="Telegram"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="footer-social-icon" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="footer-social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="footer-social-icon" title="Rutube"><i class="fas fa-play-circle"></i></a>
+                </div>
+            </div>
+
+            <!-- Колонка: Продукты -->
+            <div class="footer-column">
+                <h4 class="footer-title">Продукты</h4>
+                <ul class="footer-menu">
+                    <li><a href="health.html">Здоровье</a></li>
+                    <li><a href="beauty.html">Красота</a></li>
+                    <li><a href="devices.html">Приборы/Аксессуары</a></li>
+                    <li><a href="all-products.html">Смотреть всё</a></li>
+                </ul>
+            </div>
+
+            <!-- Колонка: О нас -->
+            <div class="footer-column">
+                <h4 class="footer-title">О нас</h4>
+                <ul class="footer-menu">
+                    <li><a href="history.html">Компания</a></li>
+                    <li><a href="channels.html">Наши соцсети</a></li>
+                </ul>
+            </div>
+           
+            <!-- Колонка: Информация -->
+            <div class="footer-column">
+                <h4 class="footer-title">Информация</h4>
+                <ul class="footer-menu">
+                    <li><a href="articles.html">Статьи</a></li>
+                    <li><a href="reviews.html">Отзывы</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </div>
+
+
+            <!-- Колонка: FAQ -->
+            <div class="footer-column">
+                <h4 class="footer-title">FAQ</h4>
+                <ul class="footer-menu">
+                    <li><a href="faq.html">Часто задаваемые вопросы</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Нижняя строка с копирайтом и дополнительными ссылками -->
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                <p>© 2026  | Все права защищены</p>
+            </div>
+            <div class="footer-bottom-links">
+                <a href="login.html">Личный кабинет</a>
+                <a href="privacy.html">Политика конфиденциальности</a>
+                <a href="map.html">Данные </a>
+            </div>
+          </div>
+        </div>
+   </footer>
+
+
+<script>
+    document.querySelectorAll('.btn-buy').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const productName = btn.getAttribute('data-product') || 'товар';
+            alert(`Товар "${productName}" добавлен в корзину!`);
+        });
+    });
+</script>
+</body>
+</html>

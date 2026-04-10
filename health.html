@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Здоровье - Формула здоровья</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .catalog-page {
+            padding: 30px 0 60px;
+            background: #fff;
+        }
+        .catalog-page-header {
+            text-align: left;
+            margin-bottom: 50px;
+        }
+        .catalog-page-header h1 {
+            font-size: 42px;
+            font-weight: 800;
+            color: #46211A;
+            margin-bottom: 15px;
+        }
+        .breadcrumb {
+            justify-content: left;
+            gap: 10px;
+            list-style: none;
+            padding: 0;
+        }
+        .breadcrumb a {
+            color: #64b61a;
+            text-decoration: none;
+        }
+        .breadcrumb span {
+            color: #693D3D;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #e8ddd7;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+            border-color: #64b61a;
+        }
+        .product-image {
+            height: 180px;
+            background: #f9f6f3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .product-image img {
+            max-width: 100%;
+            max-height: 140px;
+            object-fit: contain;
+        }
+        .product-info {
+            padding: 16px;
+        }
+        .product-info h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #46211A;
+        }
+        .product-desc {
+            font-size: 12px;
+            color: #693D3D;
+            margin-bottom: 12px;
+            line-height: 1.4;
+            height: 34px;
+            overflow: hidden;
+        }
+        .product-price {
+            font-size: 20px;
+            font-weight: 800;
+            color: #64b61a;
+            margin-bottom: 12px;
+        }
+        .product-actions {
+            display: flex;
+            gap: 8px;
+        }
+        .btn-more, .btn-buy {
+            padding: 8px 0;
+            font-size: 12px;
+            border-radius: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            font-family: inherit;
+        }
+        .btn-more {
+            flex: 1;
+            background: #46211A;
+            color: white;
+            border: none;
+        }
+        .btn-more:hover {
+            background: #64b61a;
+            transform: translateY(-2px);
+        }
+        .btn-buy {
+            background: #64b61a;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+        }
+        .btn-buy:hover {
+            background: #4d8e14;
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            .catalog-page { padding: 100px 0 40px; }
+            .catalog-page-header h1 { font-size: 32px; }
+            .products-grid { gap: 15px; }
+            .product-image { height: 150px; }
+            .product-image img { max-height: 110px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========== ШАПКА ========== -->
+<div class="header-top-white">
+    <div class="container">
+        <div class="header-top-row">
+            <div class="logo-col">
+                <a href="index.html" class="logo-link">
+                    <img src="logo.png" alt="Формула здоровья" class="logo-img">
+                    <span class="logo-text-gradient">Формула здоровья</span>
+                </a>
+            </div>
+            <div class="auth-col">
+                <a href="login.html" class="auth-link-white">Регистрация</a> | <a href="login.html" class="auth-link-white">Вход в кабинет</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header-bottom-green">
+    <div class="container">
+        <div class="header-bottom-row">
+            <nav class="nav-menu">
+                <!-- Продукты (одна стрелка) -->
+                <div class="dropdown-wrapper">
+                    <a href="#" class="nav-link-green">
+                        Продукты <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-mega-menu">
+                        <div class="mega-menu-container">
+                            <div class="mega-menu-section">
+                                <ul>
+                                    <li><a href="new-items.html"><i class="fas fa-star"></i> Новинки</a></li>
+                                    <li><a href="health.html"><i class="fas fa-heartbeat"></i> Здоровье</a></li>
+                                    <li><a href="beauty.html"><i class="fas fa-spa"></i> Красота</a></li>
+                                    <li><a href="devices.html"><i class="fas fa-microchip"></i> Приборы/Аксессуары</a></li>
+                                    <li><a href="all-products.html" class="all-link"><i class="fas fa-th-large"></i> Смотреть всё</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- О нас -->
+                <div class="dropdown-wrapper-about">
+                    <a href="#" class="nav-link-green dropdown-toggle-about">
+                        О нас <i class="fas fa-chevron-down dropdown-arrow-about"></i>
+                    </a>
+                    <div class="dropdown-menu-about">
+                        <div class="mega-menu-container-about">
+                            <div class="mega-menu-section-about">
+                                <h4>О компании</h4>
+                                <ul>
+                                    <li><a href="history.html"><i class="fas fa-book-open"></i> История</a></li>
+                                    <li><a href="channels.html"><i class="fas fa-users"></i> Наши каналы</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Информация -->
+                <div class="dropdown-wrapper-info">
+                    <a href="#" class="nav-link-green dropdown-toggle-info">
+                        Информация <i class="fas fa-chevron-down dropdown-arrow-info"></i>
+                    </a>
+                    <div class="dropdown-menu-info">
+                        <div class="mega-menu-container-info">
+                            <div class="mega-menu-section-info">
+                                <h4>Полезное</h4>
+                                <ul>
+                                    <li><a href="articles.html"><i class="fas fa-file-alt"></i> Статьи</a></li>
+                                    <li><a href="reviews.html"><i class="fas fa-star"></i> Отзывы</a></li>
+                                    <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Контакты</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ -->
+                <a href="faq.html" class="nav-link-green">FAQ</a>
+            </nav>
+            <div class="social-icons">
+                <a href="#" class="social-icon-green" title="Telegram"><i class="fab fa-telegram"></i></a>
+                <a href="#" class="social-icon-green" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="social-icon-green" title="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header-spacer"></div>
+
+<main class="catalog-page">
+    <div class="container">
+        <div class="catalog-page-header">
+            <h1>Здоровье</h1>
+            </ul>
+        </div>
+        
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image"><img src="images/effector.png" alt="EFFECTOR" onerror="this.parentElement.innerHTML='⚡'"></div>
+                <div class="product-info">
+                    <h3>EFFECTOR</h3>
+                    <div class="product-desc">биомодулятор для омоложения клеток</div>
+                    <div class="product-price">3 910 ₽</div>
+                    <div class="product-actions">
+                        <a href="product-detail.html?id=effector" class="btn-more">Подробнее</a>
+                        <button class="btn-buy" data-product="EFFECTOR">Купить</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image"><img src="images/defender.png" alt="DEFENDER" onerror="this.parentElement.innerHTML='🛡️'"></div>
+                <div class="product-info">
+                    <h3>DEFENDER</h3>
+                    <div class="product-desc">anti-stress complex</div>
+                    <div class="product-price">1 790 ₽</div>
+                    <div class="product-actions">
+                        <a href="product-detail.html?id=defender" class="btn-more">Подробнее</a>
+                        <button class="btn-buy" data-product="DEFENDER">Купить</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image"><img src="images/chlorophyll.png" alt="VERUM Chlorophyll Ferrum" onerror="this.parentElement.innerHTML='🌿'"></div>
+                <div class="product-info">
+                    <h3>VERUM Chlorophyll Ferrum</h3>
+                    <div class="product-desc">Biogenic element</div>
+                    <div class="product-price">2 750 ₽</div>
+                    <div class="product-actions">
+                        <a href="product-detail.html?id=chlorophyll" class="btn-more">Подробнее</a>
+                        <button class="btn-buy" data-product="VERUM Chlorophyll Ferrum">Купить</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image"><img src="images/synbiotic.png" alt="SYNBIOTIC 5" onerror="this.parentElement.innerHTML='🦠'"></div>
+                <div class="product-info">
+                    <h3>SYNBIOTIC 5</h3>
+                    <div class="product-desc">синбиотик 5-го поколения</div>
+                    <div class="product-price">1 950 ₽</div>
+                    <div class="product-actions">
+                        <a href="product-detail.html?id=synbiotic" class="btn-more">Подробнее</a>
+                        <button class="btn-buy" data-product="SYNBIOTIC 5">Купить</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image"><img src="images/diwata.png" alt="DIWATA" onerror="this.parentElement.innerHTML='🌺'"></div>
+                <div class="product-info">
+                    <h3>DIWATA</h3>
+                    <div class="product-desc">антипаразитарная программа</div>
+                    <div class="product-price">2 990 ₽</div>
+                    <div class="product-actions">
+                        <a href="product-detail.html?id=diwata" class="btn-more">Подробнее</a>
+                        <button class="btn-buy" data-product="DIWATA">Купить</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image"><img src="images/takaralife.png" alt="VERUM TAKARALIFE" onerror="this.parentElement.innerHTML='💪'"></div>
+                <div class="product-info">
+                    <h3>VERUM TAKARALIFE</h3>
+                    <div class="product-desc">Health Benefit</div>
+                    <div class="product-price">3 950 ₽</div>
+                    <div class="product-actions">
+                        <a href="product-detail.html?id=takaralife" class="btn-more">Подробнее</a>
+                        <button class="btn-buy" data-product="VERUM TAKARALIFE">Купить</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image"><img src="images/brain.png" alt="VERUM HEALTHY BRAIN" onerror="this.parentElement.innerHTML='🧠'"></div>
+                <div class="product-info">
+                    <h3>VERUM HEALTHY BRAIN</h3>
+                    <div class="product-desc">ноотропная формула нового поколения</div>
+                    <div class="product-price">3 250 ₽</div>
+                    <div class="product-actions">
+                        <a href="product-detail.html?id=brain" class="btn-more">Подробнее</a>
+                        <button class="btn-buy" data-product="VERUM HEALTHY BRAIN">Купить</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image"><img src="images/detox.png" alt="VERUM DETOX" onerror="this.parentElement.innerHTML='💧'"></div>
+                <div class="product-info">
+                    <h3>VERUM DETOX</h3>
+                    <div class="product-desc">инновационный детокс-комплекс</div>
+                    <div class="product-price">2 950 ₽</div>
+                    <div class="product-actions">
+                        <a href="product-detail.html?id=detox" class="btn-more">Подробнее</a>
+                        <button class="btn-buy" data-product="VERUM DETOX">Купить</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image"><img src="images/nephro.png" alt="VERUM HEALTHY NEPHRO" onerror="this.parentElement.innerHTML='🩸'"></div>
+                <div class="product-info">
+                    <h3>VERUM HEALTHY NEPHRO</h3>
+                    <div class="product-desc">комплексная защита почек</div>
+                    <div class="product-price">2 550 ₽</div>
+                    <div class="product-actions">
+                        <a href="product-detail.html?id=nephro" class="btn-more">Подробнее</a>
+                        <button class="btn-buy" data-product="VERUM HEALTHY NEPHRO">Купить</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image"><img src="images/liver.png" alt="VERUM HEALTHY LIVER" onerror="this.parentElement.innerHTML='🌿'"></div>
+                <div class="product-info">
+                    <h3>VERUM HEALTHY LIVER</h3>
+                    <div class="product-desc">здоровье печени на клеточном уровне</div>
+                    <div class="product-price">1 900 ₽</div>
+                    <div class="product-actions">
+                        <a href="product-detail.html?id=liver" class="btn-more">Подробнее</a>
+                        <button class="btn-buy" data-product="VERUM HEALTHY LIVER">Купить</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image"><img src="images/fiber.png" alt="VERUM HEALTHY FIBER" onerror="this.parentElement.innerHTML='🌾'"></div>
+                <div class="product-info">
+                    <h3>VERUM HEALTHY FIBER</h3>
+                    <div class="product-desc">уникальная формула клетчатки</div>
+                    <div class="product-price">3 450 ₽</div>
+                    <div class="product-actions">
+                        <a href="product-detail.html?id=fiber" class="btn-more">Подробнее</a>
+                        <button class="btn-buy" data-product="VERUM HEALTHY FIBER">Купить</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image"><img src="images/kyanos.png" alt="VERUM KÝANOS" onerror="this.parentElement.innerHTML='👁️'"></div>
+                <div class="product-info">
+                    <h3>VERUM KÝANOS</h3>
+                    <div class="product-desc">Капли для глаз</div>
+                    <div class="product-price">1 850 ₽</div>
+                    <div class="product-actions">
+                        <a href="product-detail.html?id=kyanos" class="btn-more">Подробнее</a>
+                        <button class="btn-buy" data-product="VERUM KÝANOS">Купить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- ПОДВАЛ -->
+<footer class="footer-new">
+    <div class="footer-bg"></div>
+    <div class="container">
+        <div class="footer-content">
+            <!-- Левая колонка: логотип и название -->
+            <div class="footer-brand">
+                <div class="footer-logo-wrapper">
+                    <img src="logo.png" alt="Формула здоровья" class="footer-logo-img-new">
+                    <span class="footer-brand-name">Формула здоровья</span>
+                </div>
+           <!-- Иконки соцсетей под логотипом и названием -->
+                <div class="footer-social">
+                    <a href="#" class="footer-social-icon" title="Telegram"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="footer-social-icon" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="footer-social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="footer-social-icon" title="Rutube"><i class="fas fa-play-circle"></i></a>
+                </div>
+            </div>
+
+            <!-- Колонка: Продукты -->
+            <div class="footer-column">
+                <h4 class="footer-title">Продукты</h4>
+                <ul class="footer-menu">
+                    <li><a href="health.html">Здоровье</a></li>
+                    <li><a href="beauty.html">Красота</a></li>
+                    <li><a href="devices.html">Приборы/Аксессуары</a></li>
+                    <li><a href="all-products.html">Смотреть всё</a></li>
+                </ul>
+            </div>
+
+            <!-- Колонка: О нас -->
+            <div class="footer-column">
+                <h4 class="footer-title">О нас</h4>
+                <ul class="footer-menu">
+                    <li><a href="history.html">Компания</a></li>
+                    <li><a href="channels.html">Наши соцсети</a></li>
+                </ul>
+            </div>
+           
+            <!-- Колонка: Информация -->
+            <div class="footer-column">
+                <h4 class="footer-title">Информация</h4>
+                <ul class="footer-menu">
+                    <li><a href="articles.html">Статьи</a></li>
+                    <li><a href="reviews.html">Отзывы</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </div>
+
+
+            <!-- Колонка: FAQ -->
+            <div class="footer-column">
+                <h4 class="footer-title">FAQ</h4>
+                <ul class="footer-menu">
+                    <li><a href="faq.html">Часто задаваемые вопросы</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Нижняя строка с копирайтом и дополнительными ссылками -->
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                <p>© 2026  | Все права защищены</p>
+            </div>
+            <div class="footer-bottom-links">
+                <a href="login.html">Личный кабинет</a>
+                <a href="privacy.html">Политика конфиденциальности</a>
+                <a href="map.html">Данные </a>
+            </div>
+          </div>
+        </div>
+   </footer>
+
+<script>
+    document.querySelectorAll('.btn-buy').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const productName = btn.getAttribute('data-product') || 'товар';
+            alert(`Товар "${productName}" добавлен в корзину!`);
+        });
+    });
+</script>
+</body>
+</html>

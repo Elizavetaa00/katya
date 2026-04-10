@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>История компании - Формула здоровья</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .page-content {
+            padding: 50px 0 60px;
+            background: #fff;
+        }
+        .page-header {
+            text-align: leftward;
+            margin-bottom: 50px;
+        }
+        .page-header h1 {
+            font-size: 42px;
+            font-weight: 800;
+            color: #46211A;
+            margin-bottom: 15px;
+        }
+        .breadcrumb {
+            justify-content: left;
+            gap: 10px;
+            list-style: none;
+            padding: 0;
+        }
+        .breadcrumb a {
+            color: #64b61a;
+            text-decoration: none;
+        }
+        .breadcrumb span {
+            color: #693D3D;
+        }
+        .history-text {
+            max-width: 1300px;
+            line-height: 1.8;
+            color: #46211A;
+        }
+        .history-text p {
+            margin-bottom: 20px;
+        }
+        .timeline {
+            margin-top: 50px;
+        }
+        .timeline-item {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f9f6f3;
+            border-radius: 16px;
+        }
+        .timeline-year {
+            font-size: 24px;
+            font-weight: 800;
+            color: #64b61a;
+            min-width: 100px;
+        }
+        .timeline-content h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .timeline-content p {
+            color: #693D3D;
+        }
+        @media (max-width: 768px) {
+            .page-content { padding: 100px 0 40px; }
+            .page-header h1 { font-size: 32px; }
+            .timeline-item { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== ШАПКА ========== -->
+    <div class="header-top-white">
+        <div class="container">
+            <div class="header-top-row">
+                <div class="logo-col">
+                    <a href="index.html" class="logo-link">
+                        <img src="logo.png" alt="Формула здоровья" class="logo-img">
+                        <span class="logo-text-gradient">Формула здоровья</span>
+                    </a>
+                </div>
+                <div class="auth-col">
+                    <a href="login.html" class="auth-link-white">Регистрация</a> | <a href="login.html" class="auth-link-white">Вход в кабинет</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-bottom-green">
+        <div class="container">
+            <div class="header-bottom-row">
+                <nav class="nav-menu">
+                    <!-- Продукты -->
+                    <div class="dropdown-wrapper">
+                        <a href="#" class="nav-link-green dropdown-toggle">
+                            Продукты <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <div class="dropdown-mega-menu">
+                            <div class="mega-menu-container">
+                                <div class="mega-menu-section">
+                                    <h4>Категории</h4>
+                                    <ul>
+                                        <li><a href="new-items.html"><i class="fas fa-star"></i> Новинки</a></li>
+                                        <li><a href="health.html"><i class="fas fa-heartbeat"></i> Здоровье</a></li>
+                                        <li><a href="beauty.html"><i class="fas fa-spa"></i> Красота</a></li>
+                                        <li><a href="devices.html"><i class="fas fa-microchip"></i> Приборы/Аксессуары</a></li>
+                                        <li><a href="all-products.html" class="all-link"><i class="fas fa-th-large"></i> Смотреть всё</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- О нас -->
+                    <div class="dropdown-wrapper-about">
+                        <a href="#" class="nav-link-green dropdown-toggle-about">
+                            О нас <i class="fas fa-chevron-down dropdown-arrow-about"></i>
+                        </a>
+                        <div class="dropdown-menu-about">
+                            <div class="mega-menu-container-about">
+                                <div class="mega-menu-section-about">
+                                    <h4>О компании</h4>
+                                    <ul>
+                                        <li><a href="history.html"><i class="fas fa-book-open"></i> История</a></li>
+                                        <li><a href="channels.html"><i class="fas fa-users"></i> Наши каналы</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Информация -->
+                    <div class="dropdown-wrapper-info">
+                        <a href="#" class="nav-link-green dropdown-toggle-info">
+                            Информация <i class="fas fa-chevron-down dropdown-arrow-info"></i>
+                        </a>
+                        <div class="dropdown-menu-info">
+                            <div class="mega-menu-container-info">
+                                <div class="mega-menu-section-info">
+                                    <h4>Полезное</h4>
+                                    <ul>
+                                        <li><a href="articles.html"><i class="fas fa-file-alt"></i> Статьи</a></li>
+                                        <li><a href="reviews.html"><i class="fas fa-star"></i> Отзывы</a></li>
+                                        <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Контакты</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ -->
+                    <a href="faq.html" class="nav-link-green">FAQ</a>
+                </nav>
+                <div class="social-icons">
+                    <a href="#" class="social-icon-green" title="Telegram"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="social-icon-green" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-icon-green" title="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-spacer"></div>
+
+    <main class="page-content">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="index.html">Главная</a></li>
+                <div class="page-header">
+                    <h1>История компаний "VERUM GLOBAL"</h1>
+                    <p class="history-subtitle">Основана 1 июля 2024 г.</p>
+                </div>
+
+                <div class="history-text"
+            <p>В эпицентре создания компании Verum Global лежит не просто бизнес-идея, а стремление к инновациям и желание сделать мир лучше. Меня зовут Дмитрий Зверев, и я горжусь тем, что мои 25 лет в сетевом маркетинге привели меня к моменту, когда я не только могу делиться знаниями, но и воплощать мечту о создании продукта, который изменит отрасль.</p>
+            <p>Мы начали с мечты - быть в авангарде, создавать нечто, что расширит границы возможного, предложить людям всех возрастов быть более здоровыми и активными. И именно эта мечта стала основой для Verum.</p>
+            <p>Наш подход отличается тем, что в центре всегда продукт и его влияние на жизнь людей. Год назад, на встрече с коллегами, с которыми мы сотрудничаем более семи лет, я поделился видением новой эры в MLM-индустрии. Вместе мы решили объединить усилия с профессионалами, обладающими обширными производственными, научными и административными ресурсами, чтобы воплотить это видение в жизнь.</p>
+            <p>Наша задача была найти и создать продукт, который станет революцией не только для MLM, но и для сфер велнесс и антиэйджинг. Мы опирались на безусловные тренды здоровья и желания людей оставаться молодыми и активными.</p>
+            <p>После года поисков и разработок, в сотрудничестве с амбициозными предпринимателями и учеными, мы обратились к передовым методам молекулярной биологии и другим разработкам в области биотехнологий. Результатом стал первый в своем роде продукт на основе впРНК, предотвращающий серьезные заболевания, замедляющий процессы старения, и оказывающий омолаживающее действие, подкрепленный обширной научной базой.</p>
+            <p>Затем, мы собрали команду специалистов в области IT и маркетинга для разработки уникального бизнес-плана, который предложил бы наилучшие условия для создания и развития собственного дела в индустрии сетевого маркетинга. Сегодня «Verum Global» представляет собой синтез лучшего обучения, условий труда и возможностей для каждого, кто готов строить надежное и прибыльное предприятие.</p>
+            <p>Эта история - не только о создании компании, но и о реализации мечты изменить мир к лучшему.</p>
+            <p>Верум — это пример того, как страсть и инновации могут создавать не только новые продукты, но и новую реальность для всех нас.</p>
+            </div>
+        </div>
+        </div>
+    </main>
+
+    <main class="page-content">
+        <div class="container">
+            <ul class="breadcrumb">
+                <div class="page-header">
+                    <h1>История компаний "Whieda"</h1>
+                    <p class="history-subtitle">Основана в августе 2022 г.</p>
+                </div>
+
+                <div class="history-text">
+                    <p>Международная ассоциация WHIEDA («Здоровье и Процветание», WORLD HEALTH INDUSTRY AND ECONOMIC DEVELOPMENT ALLIANCE) была основана в августе 2022 года в штаб-квартире компании FOHERB в городе Тяньцзин (КНР). Инициаторами создания выступили компания FOHERB и Евразийская Ассоциация.</p>
+                    <p>Некоторые ключевые моменты истории компании:</p>
+                    <p>1.Слияние брендов. WHIEDA стала результатом объединения двух компаний — Foherb (FOHOW) и Health Priority. Слияние произошло в ответ на растущий спрос на натуральные и эффективные препараты и косметические средства.</p>
+                    <p>2.Миссия и цели. Ассоциация стремилась создать глобальную платформу для сотрудничества между предприятиями, отраслевыми организациями, научно-исследовательскими институтами, экспертами и учёными в сфере здравоохранения. Её главная цель — стимулировать приток международных инвестиций в развитие межрегионального сотрудничества в области здравоохранения.</p>
+                    <p>3.Международная экспансия. Уже в 2023 году WHIEDA начала работу на мировом рынке. За два года ассоциация вышла на четыре континента — Азию, Европу, Африку и Южную Америку. По данным на 2025 год, у компании было более 30 филиалов по всему миру, включая представительства в России, Казахстане, Кыргызстане, Узбекистане, Монголии и других странах.</p>
+                    <p>4.Советник по традиционной китайской медицине. Для развития культуры здоровья WHIEDA пригласила в качестве советника профессора Чжан Данина. Он — основоположник нефрологии в традиционной китайской медицине, академик Международной Евразийской академии наук и авторитетный эксперт в области здравоохранения.</p>
+                    <p>5.Партнёрства и сотрудничество. WHIEDA установила тесные отношения с такими организациями, как «Лига здоровья нации» России, Союз пенсионеров, Российское научное общество специалистов традиционной китайской медицины, Международное сообщество восточной медицины и другими.</p>
+                    <p>6.Продукция. Под брендом WHIEDA объединена продукция ряда предприятий-партнёров, таких как FOHERB, Health-Priority, XueHuoquan и другие. Ассортимент включает биологически активные добавки (БАДы), оздоровительную технику, средства для уборки, косметику, мелкую бытовую технику и кухонные приборы. Продукция соответствует международным стандартам качества и имеет необходимые сертификаты, включая разрешительные документы от регулирующих органов Китая, США и Великобритании.</p>
+                    <p>7.Структура управления. Компанией руководят опытные управленцы. В Президиум входят председатель, исполнительный председатель и заместители. Основная структура состоит из Секретариата, Комитета по промышленно-экономическому развитию, отделов санитарного просвещения, отраслевых экспертов, финансового обеспечения и других комитетов.</p>
+                    <p>WHIEDA позиционируется как платформа для сотрудничества между бизнесом, научными кругами и отраслевыми объединениями в сфере здоровья. Компания стремится способствовать устойчивому развитию мировой индустрии здравоохранения.</p>
+                </div>
+        </div>
+        </div>
+    </main>
+
+    <!-- ПОДВАЛ -->
+    <footer class="footer-new">
+        <div class="footer-bg"></div>
+        <div class="container">
+            <div class="footer-content">
+                <!-- Левая колонка: логотип и название -->
+                <div class="footer-brand">
+                    <div class="footer-logo-wrapper">
+                        <img src="logo.png" alt="Формула здоровья" class="footer-logo-img-new">
+                        <span class="footer-brand-name">Формула здоровья</span>
+                    </div>
+                    <!-- Иконки соцсетей под логотипом и названием -->
+                    <div class="footer-social">
+                        <a href="#" class="footer-social-icon" title="Telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="footer-social-icon" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="footer-social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="footer-social-icon" title="Rutube"><i class="fas fa-play-circle"></i></a>
+                    </div>
+                </div>
+
+                <!-- Колонка: Продукты -->
+                <div class="footer-column">
+                    <h4 class="footer-title">Продукты</h4>
+                    <ul class="footer-menu">
+                        <li><a href="health.html">Здоровье</a></li>
+                        <li><a href="beauty.html">Красота</a></li>
+                        <li><a href="devices.html">Приборы/Аксессуары</a></li>
+                        <li><a href="all-products.html">Смотреть всё</a></li>
+                    </ul>
+                </div>
+
+                <!-- Колонка: О нас -->
+                <div class="footer-column">
+                    <h4 class="footer-title">О нас</h4>
+                    <ul class="footer-menu">
+                        <li><a href="history.html">Компания</a></li>
+                        <li><a href="channels.html">Наши соцсети</a></li>
+                    </ul>
+                </div>
+
+                <!-- Колонка: Информация -->
+                <div class="footer-column">
+                    <h4 class="footer-title">Информация</h4>
+                    <ul class="footer-menu">
+                        <li><a href="articles.html">Статьи</a></li>
+                        <li><a href="reviews.html">Отзывы</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </div>
+
+
+                <!-- Колонка: FAQ -->
+                <div class="footer-column">
+                    <h4 class="footer-title">FAQ</h4>
+                    <ul class="footer-menu">
+                        <li><a href="faq.html">Часто задаваемые вопросы</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Нижняя строка с копирайтом и дополнительными ссылками -->
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>© 2026  | Все права защищены</p>
+                </div>
+                <div class="footer-bottom-links">
+                    <a href="login.html">Личный кабинет</a>
+                    <a href="privacy.html">Политика конфиденциальности</a>
+                    <a href="map.html">Данные </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+</html>
